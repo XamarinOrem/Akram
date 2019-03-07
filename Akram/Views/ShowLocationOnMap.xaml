@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Akram.Views.ShowLocationOnMap">
+    <ContentPage.Content>
+        <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="5"
+                          Margin="0" Padding="0">
+            
+            <Grid HorizontalOptions="FillAndExpand">
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+                <StackLayout Spacing="0" x:Name="firstGrid" Padding="8"   Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Image Margin="10,0,0,0" Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" HorizontalOptions="StartAndExpand" >
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Back_Tapped"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+
+                        </Image>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Margin="10,0,0,0"
+                                TextColor="White" Text="Location" HorizontalOptions="Start"
+                                FontSize="Large"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+            <custom:LocationMap
+            x:Name="MyLocationMap" IsShowingUser="true"
+            MapType="Street" HasZoomEnabled="True">
+            </custom:LocationMap>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             x:Class="Akram.Views.ViewProfilePage"
+             xmlns:local="clr-namespace:Akram"
+             xmlns:circleimage="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+
+
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                          Margin="0" Padding="0">
+
+            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            Source="menu_drawer_bg.png" Aspect="AspectFill" />
+        
+        <Grid HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" 
+                  AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+            
+            <Image HorizontalOptions="FillAndExpand" HeightRequest="50"
+                   Source="bg_with_header.png" Opacity="0.7" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+            <StackLayout Spacing="0" x:Name="firstGrid" Padding="8"   Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Image Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" >
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackTapped}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+
+                    </Image>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" HorizontalOptions="Start"
+                                TextColor="White" Text="My Profile" Margin="10,0,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                </StackLayout>
+
+            </StackLayout>
+
+        <StackLayout Grid.Row="1" Grid.Column="0" Spacing="10"  BackgroundColor="Transparent" VerticalOptions="CenterAndExpand" IsVisible="{Binding LoadingVisible}" Orientation="Vertical">
+            <ActivityIndicator IsRunning="True" IsVisible="True" Color="White"></ActivityIndicator>
+
+        </StackLayout>
+
+
+        <ContentView Grid.Row="1" Grid.Column="0" IsVisible="{Binding NoInternetVisible}" x:Name="NoInternet" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout BackgroundColor="Transparent" Padding="10" Spacing="10">
+                <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="150" Margin="0,10,0,0"></Image>
+                <Label Text="Connection failed" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start"  TextColor="White"
+                           FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" StyleId="{x:Static adc:App_FontFamilies.PageTitles}"></Label>
+                <custom:LineLabel Text="There was an error while trying to connect. Please check your internet and try again." FontSize="Small" 
+                                      HorizontalOptions="StartAndExpand" LineSpacing="1.2" TextColor="White"
+                           VerticalOptions="Start" HorizontalTextAlignment="Center" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                      StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"></custom:LineLabel>
+                <Button FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" StyleId="{x:Static adc:App_FontFamilies.PageTitles}"
+                        Margin="0,10,0,0"
+                    HorizontalOptions="Center"  TextColor="Black" BackgroundColor="White"
+                    Text="Try Again" FontSize="Small" WidthRequest="180" HeightRequest="50"
+                        FontAttributes="Bold" BorderRadius="15" Clicked="Try_Again_Button_Clicked"></Button>
+            </StackLayout>
+        </ContentView>
+
+
+        <ScrollView Grid.Row="1" Grid.Column="0" IsVisible="{Binding MainListVisible}">
+            <StackLayout BackgroundColor="Transparent">
+                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="10" HorizontalOptions="FillAndExpand" Margin="20,10,20,10">
+                    <circleimage:CircleImage Source="{Binding Image}" Aspect="AspectFill" HeightRequest="120" WidthRequest="120" HorizontalOptions="Start"/>
+
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="Start" VerticalOptions="CenterAndExpand">
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding FullName}" HorizontalOptions="Start"
+                                FontSize="Large"  HorizontalTextAlignment="Start"/>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="#383838" Text="{Binding Name}" HorizontalOptions="Start"
+                                FontSize="Medium"  HorizontalTextAlignment="Start"/>
+                    </StackLayout>
+
+                    <Image Source="ic_edit.png" HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding editCommand}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+                <StackLayout BackgroundColor="#107E3E" Orientation="Horizontal" HorizontalOptions="FillAndExpand"  Padding="10">
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" Margin="30,10,30,10" Spacing="0">
+                        <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" Source="ic_collect.png"/>
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="20" Margin="0,10,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Collect" 
+                                FontSize="Medium"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="CenterAndExpand" Margin="0,10,0,10" Spacing="0">
+                        <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" Source="ic_redeem.png"/>
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="20" Margin="0,10,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Redeem" 
+                                FontSize="Medium"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" Margin="30,10,30,10" Spacing="0">
+                        <Image HeightRequest="50" WidthRequest="50" HorizontalOptions="Start" Source="ic_points.png"/>
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="220" Margin="0,10,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Points" 
+                                FontSize="Medium"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="10" Margin="20,5,20,5" HorizontalOptions="StartAndExpand">
+
+                    <Image HeightRequest="40" WidthRequest="40" VerticalOptions="Center"
+                   Source="ic_mail.png"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding Email}"
+                                FontSize="Medium"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="10" Margin="20,5,20,5" HorizontalOptions="StartAndExpand">
+
+                    <Image HeightRequest="40" WidthRequest="40" VerticalOptions="Center"
+                   Source="ic_facebook_white.png"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding Facebook}"
+                                FontSize="Medium"  VerticalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="10" Margin="20,5,20,5" HorizontalOptions="StartAndExpand">
+
+                    <Image HeightRequest="40" WidthRequest="40" VerticalOptions="Center"
+                   Source="ic_phone.png"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding Phone}"
+                                FontSize="Medium"  VerticalOptions="Center"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="10" Margin="20,5,20,5" HorizontalOptions="StartAndExpand">
+
+                    <Image HeightRequest="40" WidthRequest="40" VerticalOptions="Center"
+                   Source="ic_gender.png"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding Gender}"
+                                FontSize="Medium" VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="10" Margin="20,5,20,5" HorizontalOptions="StartAndExpand">
+
+                    <Image HeightRequest="40" WidthRequest="40" VerticalOptions="Center"
+                   Source="ic_gift.png"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding GDate}"
+                                FontSize="Medium"  VerticalOptions="Center"/>
+                </StackLayout>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" FontAttributes="Bold"
+           StyleId="{x:Static adc:App_FontFamilies.PageTitles}" x:Name="changePasswordBtn"
+                                TextColor="White" Text="Change Password" Margin="20,10,20,0"
+                                FontSize="Large" HorizontalOptions="StartAndExpand" VerticalOptions="Start">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding changePasswordCommand}"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <BoxView BackgroundColor="White" x:Name="changePasswordLine" HeightRequest="1.5" WidthRequest="173" HorizontalOptions="Start" Margin="20,0,0,30"/>
+            </StackLayout>
+
+        </ScrollView>
+                    </Grid>
+    </AbsoluteLayout>
+
+</ContentPage>

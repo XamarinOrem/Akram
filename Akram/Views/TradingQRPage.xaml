@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             x:Class="Akram.Views.TradingQRPage"
+             BackgroundImage="ic_icons_bg.png">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="30"
+                          Margin="0" Padding="0">
+
+            <Grid HorizontalOptions="FillAndExpand">
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+                <StackLayout Spacing="0" Padding="8" x:Name="firstGrid"  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Image HorizontalOptions="Start"  HeightRequest="28"  Source="ic_back.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding back}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Trading" Margin="10,0,0,0" HorizontalOptions="Start"
+                                FontSize="Large"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image HorizontalOptions="EndAndExpand"  HeightRequest="40" WidthRequest="40"  Source="ic_camera.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding scan}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+
+
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="20" VerticalOptions="FillAndExpand">
+
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Image  Source="ic_phone_qrcode.png" HeightRequest="280" WidthRequest="280" Margin="0,30,0,0"></Image>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" Padding="40,10,40,20">
+                    <Frame HasShadow="False" BackgroundColor="Transparent" OutlineColor="Transparent" Padding="10,10,10,20" CornerRadius="0">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTitles}"
+                                TextColor="Black" Text="Better Together" 
+                                FontSize="28"  HorizontalTextAlignment="Center"/>
+
+                            <custom:LineLabel LineSpacing="1.2" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="Black" Text="Capture the QR with your friend camera" 
+                                FontSize="Medium"  HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+
+
+            </StackLayout>
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

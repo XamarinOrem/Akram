@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Class="Akram.Views.MapGiftPage"
+             BackgroundImage="ic_icons_bg.png">
+    
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="0"
+                          Margin="0" Padding="0">
+
+        <Grid>
+            <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+            <StackLayout Orientation="Horizontal" Margin="10,0,10,0" x:Name="firstGrid"
+                         BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
+                <Image HeightRequest="30" WidthRequest="30" HorizontalOptions="StartAndExpand">
+
+                </Image>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White"
+                                FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+
+                <Image Source="cross.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="EndAndExpand">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </Grid>
+
+        <ScrollView>
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="0" BackgroundColor="Transparent">
+                <Image  Source="map_green_gift.png" HeightRequest="90" WidthRequest="90" Margin="0,30,0,10"></Image>
+
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" x:Name="shopNameLbl"
+                                TextColor="#383838"  HorizontalOptions="Center"
+                                FontSize="Large"  HorizontalTextAlignment="Center"/>
+
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Margin="0,20,0,0"
+                                TextColor="#383838" Text="Added by"  HorizontalOptions="Center"
+                                FontSize="Medium"  HorizontalTextAlignment="Center"/>
+
+            <Frame BackgroundColor="#F4F4F4" HorizontalOptions="Center" CornerRadius="50" Padding="0,5,0,5" OutlineColor="#7C7D7D">
+
+                    <Image Source="logo_with_name.png" HeightRequest="100" WidthRequest="100"/>
+            </Frame>
+
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" FontAttributes="Bold"
+           StyleId="{x:Static adc:App_FontFamilies.PageTitles}" Margin="30,10,30,5"
+                                TextColor="#383838" Text="Gift Rules" HorizontalOptions="Start"
+                                FontSize="Large"  HorizontalTextAlignment="Start"/>
+
+            <Frame BackgroundColor="#DBDDDC" Padding="10,20,10,20" OutlineColor="#5A6E66" Margin="30,5,30,10" CornerRadius="10" HasShadow="False">
+
+                    <ScrollView>
+                <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Spacing="5" x:Name="rulesLayout">
+
+                </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+            <Frame x:Name="ratingGiftFrame" BackgroundColor="#FEFEFE" CornerRadius="6" Padding="5" OutlineColor="#C0645F" HorizontalOptions="CenterAndExpand">
+
+                <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Spacing="5">
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTitles}" FontAttributes="Bold"
+                                TextColor="Black" Text="Rate the gift" Margin="0,20,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                    <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="Black" HeightRequest="1" Margin="15,0,15,0"></BoxView>
+
+                        <rating:SfRating x:Name="rating" ValueChanged="rating_ValueChanged" HorizontalOptions="CenterAndExpand" 
+                                         Margin="20,0,20,20" ItemCount="5" 
+                                         ItemSize="25" ItemSpacing="10" Precision="Standard">
+                            <rating:SfRating.RatingSettings>
+                                <rating:SfRatingSettings RatedFill="Green" UnRatedFill="Transparent" 
+                                                         RatedStrokeWidth="0" UnRatedStrokeWidth="2" />
+                            </rating:SfRating.RatingSettings>
+                        </rating:SfRating>
+
+                        <Button x:Name="doneBtn" Clicked="doneBtn_Clicked" Text="Done" IsVisible="False"
+                            TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="CenterAndExpand"
+                            BorderRadius="7" FontSize="Small" Margin="0,0,0,10" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"/>
+                    </StackLayout>
+
+            </Frame>
+
+            <Button Clicked="Button_Clicked" x:Name="collectBtn"
+                    FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                    Text="Collect" Margin="20"
+                        TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="FillAndExpand"
+                        BorderRadius="7" FontSize="Medium"  />
+
+        </StackLayout>
+        </ScrollView>
+
+    </StackLayout>
+</ContentPage>

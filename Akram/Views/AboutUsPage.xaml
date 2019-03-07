@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             x:Class="Akram.Views.AboutUsPage">
+
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="0"
+                          Margin="0" Padding="0">
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                          Margin="0" Padding="0">
+
+            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            Source="ic_icons_bg.png" Aspect="AspectFill" />
+
+            <Grid HorizontalOptions="FillAndExpand"
+                  AbsoluteLayout.LayoutFlags="All" 
+                  AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+
+                  <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="50"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+                
+                <StackLayout Orientation="Horizontal" x:Name="firstGrid"
+                         BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
+                <Image Margin="10,0,0,0" Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" 
+                           HorizontalOptions="Start" >
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+
+                    </Image>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="About Us" 
+                                FontSize="Large" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
+            </StackLayout>
+
+        <ScrollView Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                <Image Margin="0,40,0,0" Source="logo_with_name.png" HeightRequest="200" WidthRequest="200" HorizontalOptions="Center" VerticalOptions="Start"/>
+
+            <StackLayout BackgroundColor="#97A19D" HorizontalOptions="FillAndExpand" 
+                         VerticalOptions="StartAndExpand">
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="Center" Margin="5,5,0,0" HorizontalTextAlignment="Center" VerticalOptions="Start"
+          FontSize="24" Text="About Akram" TextColor="#383838"/>
+
+                            <Label LineBreakMode="WordWrap" VerticalOptions="Start"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="10" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="A modern teaser hunt game that has more than 1500 gifts all over jordan with a value exceeding 500.00.00 JDs, play and enjoy collecting a huge number of gifts and win a cash from completing challenges."
+                                  TextColor="#383838"
+                          LineHeight="1.2" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+            </StackLayout>
+
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="Center" Margin="5" HorizontalTextAlignment="Center" VerticalOptions="Start"
+          FontSize="24" Text="Contact Us" TextColor="#383838"/>
+
+            <StackLayout BackgroundColor="Transparent" Margin="10" Spacing="15" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+
+                    <Image HeightRequest="50" WidthRequest="50" Source="ic_insta.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Insta_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image HeightRequest="50" WidthRequest="50" Source="ic_fb.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Facebook_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image HeightRequest="50" WidthRequest="50" Source="ic_email.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Email_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="Center" Margin="10" HorizontalTextAlignment="Center" VerticalOptions="Start"
+          FontSize="Large" Text="http://www.akramapp.com" TextColor="#383838">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Link_Tapped"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </StackLayout>
+        </ScrollView>
+                        </Grid>
+            </AbsoluteLayout>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             x:Class="Akram.Views.LocationPage"
+             BackgroundImage="ic_icons_bg.png">
+    
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="5"
+                          Margin="0" Padding="0">
+
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                          Margin="0" Padding="0">
+
+            <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            Source="ic_icons_bg.png" Aspect="AspectFill" />
+
+        <Grid HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" 
+                  AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+            <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+            <StackLayout Spacing="0" x:Name="firstGrid" Padding="8"   Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Image Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" >
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackTapped}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+
+                    </Image>
+
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Location" HorizontalOptions="Start" Margin="10,0,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+        
+        <StackLayout Grid.Row="1" Grid.Column="0">
+        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Margin="10,5,10,5"
+                                TextColor="#383838" Text="Always" HorizontalOptions="FillAndExpand"
+                                FontSize="Medium"  HorizontalTextAlignment="Start"/>
+
+        <BoxView BackgroundColor="#B2B4B4" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+
+        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Margin="10,5,10,5"
+                                TextColor="#383838" Text="While Using The App" HorizontalOptions="FillAndExpand"
+                                FontSize="Medium"  HorizontalTextAlignment="Start"/>
+
+        <BoxView BackgroundColor="#B2B4B4" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+
+        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"  Margin="10,5,10,5"
+                                TextColor="#383838" Text="Never" HorizontalOptions="FillAndExpand"
+                                FontSize="Medium"  HorizontalTextAlignment="Start"/>
+
+        <BoxView BackgroundColor="#B2B4B4" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+                </Grid>
+            </AbsoluteLayout>
+    </StackLayout>
+</ContentPage>

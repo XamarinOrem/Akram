@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Akram.Views.NotificationPage"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             BackgroundImage="menu_drawer_bg.png">
+    
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="0"
+                          Margin="0" Padding="0" BackgroundColor="Transparent">
+
+            <Grid BackgroundColor="Transparent" HorizontalOptions="FillAndExpand"  IsVisible="{Binding MainDataVisible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+                <StackLayout Spacing="0" x:Name="firstGrid" Padding="8" Orientation="Horizontal" BackgroundColor="Transparent"
+                             HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Image HorizontalOptions="Start"  HeightRequest="28"  Source="ic_back.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding back}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Notifications" Margin="10,0,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                        <Image HorizontalOptions="EndAndExpand"  HeightRequest="40" WidthRequest="40">
+                        </Image>
+                    </StackLayout>
+
+
+                </StackLayout>
+
+                <ListView Grid.Row="1" Grid.Column="0" SeparatorVisibility="None" BackgroundColor="Transparent"
+                                  ItemsSource="{Binding NotificationList}" CachingStrategy="RecycleElement" HasUnevenRows="True" VerticalOptions="FillAndExpand">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+
+                                <StackLayout Padding="5,0,5,0" Margin="10" Orientation="Vertical" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                                    <Frame BackgroundColor="#BABABA" Margin="10" Padding="6" HorizontalOptions="FillAndExpand" HasShadow="True" CornerRadius="0">
+                                        <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Spacing="5">
+
+                                            <Label TextColor="#4E8464" FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTitles}" FontSize="Large" Text="{Binding Title}"></Label>
+
+<!--                                            <custom:LineLabel LineSpacing="1.3" TextColor="#383838" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" FontSize="Medium" Text="{Binding Description}"></custom:LineLabel>-->
+
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+
+
+                </ListView>
+
+                
+            </Grid>
+
+            <Grid BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" IsVisible="{Binding NoDataVisible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+                <StackLayout Spacing="0" x:Name="secondGrid" Padding="8" Orientation="Horizontal" BackgroundColor="Transparent"
+                             HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Image HorizontalOptions="Start"  HeightRequest="28"  Source="ic_back.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding back}"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Notifications" Margin="10,0,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                    <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                        <Image HorizontalOptions="EndAndExpand"  HeightRequest="40" WidthRequest="40">
+                        </Image>
+                    </StackLayout>
+
+
+                </StackLayout>
+
+                <ContentView Grid.Row="1" Grid.Column="0" x:Name="NoData" BackgroundColor="Transparent">
+                    <StackLayout BackgroundColor="Transparent" Padding="10" Spacing="10" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Image Source="no_data_found.png" VerticalOptions="Start" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                        <custom:LineLabel LineSpacing="1.2" Text="No new notifications to view" FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"></custom:LineLabel>
+                    </StackLayout>
+                </ContentView>
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

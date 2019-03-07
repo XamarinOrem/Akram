@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Akram.Views.LoginPage">
+    <ContentPage.Content>
+        <RelativeLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                          Margin="0" Padding="0">
+
+            <Image RelativeLayout.WidthConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                RelativeLayout.HeightConstraint=
+                  "{ConstraintExpression Type=RelativeToParent, Property=Height}"
+            Source="ic_icons_bg.png" Aspect="AspectFill" />
+            <ScrollView RelativeLayout.WidthConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Width}"
+            RelativeLayout.HeightConstraint=
+              "{ConstraintExpression Type=RelativeToParent, Property=Height}">
+                <StackLayout HorizontalOptions="FillAndExpand" Padding="30,0,30,20" Spacing="15" VerticalOptions="StartAndExpand" BackgroundColor="Transparent">
+
+                    <Image Margin="0,30,0,0" Source="login_logo.png" HeightRequest="170" WidthRequest="170" HorizontalOptions="Center" VerticalOptions="Start"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="Center" Margin="0,10,0,0" HorizontalTextAlignment="Start" VerticalOptions="Start"
+          FontSize="Medium" Text="LOGIN TO YOUR ACCOUNT" TextColor="#156133"/>
+
+                    <Entry Text="{Binding Email}" Placeholder="User Name" PlaceholderColor="#383838" HeightRequest="40" x:Name="emailTxt" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" HorizontalOptions="FillAndExpand" VerticalOptions="Start" FontSize="Small" TextColor="Black"/>
+
+
+                    <Entry Text="{Binding Password}" HeightRequest="40" IsPassword="true" x:Name="passwordTxt" 
+                     FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" Placeholder="Password" PlaceholderColor="#383838"
+           
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                     HorizontalOptions="FillAndExpand" VerticalOptions="Start" FontSize="Small" TextColor="Black"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="#156133" Text="Forgot Password?" Margin="0,0,15,0" 
+                                FontSize="Small" HorizontalOptions="EndAndExpand" VerticalOptions="Start">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding forgotPasswordCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <Button Command="{Binding loginBtnCommand}"  x:Name="loginBtn" 
+                    FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                    Text="Login"
+                        TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="FillAndExpand"
+                        BorderRadius="5" FontSize="Medium" VerticalOptions="StartAndExpand"/>
+
+
+                    <StackLayout Orientation="Horizontal" Spacing="-6" HorizontalOptions="FillAndExpand">
+                        <Image Source="fb_transparent.png" HeightRequest="50" WidthRequest="50"></Image>
+                        <Button Command="{Binding facebookLoginCommand}"  x:Name="fbLoginBtn" HeightRequest="50"
+                    FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                    Text="Login with Facebook account"
+                        TextColor="White" BackgroundColor="#475993" HorizontalOptions="FillAndExpand"
+                        BorderRadius="5" FontSize="Medium" VerticalOptions="StartAndExpand"/>
+                    </StackLayout>
+
+
+
+                    <Button Command="{Binding signUpCommand}"  x:Name="signupBtn" 
+                    FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                    Text="Sign Up"
+                        TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="FillAndExpand"
+                        BorderRadius="5" FontSize="Medium" VerticalOptions="StartAndExpand"/>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="#156133" Text="Skip Login?" Margin="0,0,15,0"
+                                FontSize="Small" HorizontalOptions="EndAndExpand" VerticalOptions="Start">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding skipLoginCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </StackLayout>
+            </ScrollView>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

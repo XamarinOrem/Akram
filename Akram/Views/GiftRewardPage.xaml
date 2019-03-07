@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+              BackgroundImage="ic_icons_bg.png"
+             x:Class="Akram.Views.GiftRewardPage">
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="30"
+                          Margin="0" Padding="0">
+
+        <Grid HorizontalOptions="FillAndExpand">
+            <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+            <StackLayout Spacing="0" Padding="8" x:Name="firstGrid"  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <StackLayout HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                    <Image HorizontalOptions="Start"  HeightRequest="28"  Source="ic_back.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Gift" HorizontalOptions="Start" Margin="10,0,0,0"
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                </StackLayout>
+                
+                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                    <Image HorizontalOptions="EndAndExpand"  HeightRequest="40" WidthRequest="40" Source="ic_camera.png">
+                    </Image>
+                </StackLayout>
+
+
+            </StackLayout>
+        </Grid>
+
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0">
+
+            <Image  Source="ic_qr.png" HeightRequest="120" VerticalOptions="FillAndExpand" WidthRequest="120" Margin="0,30,0,20"></Image>
+
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" FontAttributes="Bold"
+           StyleId="{x:Static adc:App_FontFamilies.PageTitles}" Margin="10,0,10,0"
+                                TextColor="#21633C" Text="You have one month to redeem your gift"  HorizontalOptions="Center"
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="FillAndExpand"/>
+
+            <Button
+                    FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                    Text="Redeem location" Margin="0,20,0,20"
+                        TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand"
+                        BorderRadius="7" FontSize="Medium"  />
+        </StackLayout>
+
+    </StackLayout>
+</ContentPage>

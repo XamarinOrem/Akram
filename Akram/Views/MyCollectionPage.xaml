@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Akram.Views.MyCollectionPage"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:custom="clr-namespace:Akram.CustomControls">
+    <ContentPage.Content>
+        <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                          Margin="0" Padding="0">
+
+        <Image AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            Source="ic_icons_bg.png" Aspect="AspectFill" />
+
+            <Grid HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"  x:Name="loaderLayout" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="50"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+
+                <StackLayout Orientation="Horizontal" x:Name="secondGrid"
+                         BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
+                    <Image Margin="10,0,0,0" Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" 
+                           HorizontalOptions="Start" >
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+
+                    </Image>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="My Collection" 
+                                FontSize="Large" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
+                </StackLayout>
+
+                <StackLayout Spacing="10"  BackgroundColor="Transparent" Grid.Row="1" Grid.Column="0" VerticalOptions="CenterAndExpand" Orientation="Vertical">
+                    <ActivityIndicator IsRunning="True" IsVisible="True" Color="#379a5f"></ActivityIndicator>
+
+                </StackLayout>
+
+            </Grid>
+
+            <Grid HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" x:Name="NoData" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="50"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+
+                <StackLayout Orientation="Horizontal" x:Name="thirdGrid"
+                         BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
+                    <Image Margin="10,0,0,0" Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" 
+                           HorizontalOptions="Start" >
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+
+                    </Image>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="My Collection" 
+                                FontSize="Large" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
+                </StackLayout>
+
+                <ContentView Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+                    <StackLayout BackgroundColor="Transparent" Padding="10" Spacing="10">
+                        <Image Source="no_data_found.png" VerticalOptions="Start" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                        <custom:LineLabel LineSpacing="1.2" Text="No collected items in your account to show." FontSize="Medium" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"></custom:LineLabel>
+                    </StackLayout>
+                </ContentView>
+
+
+            </Grid>
+
+            <Grid HorizontalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" x:Name="mainLayout" VerticalOptions="StartAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="50"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+
+                <StackLayout Orientation="Horizontal" x:Name="firstGrid"
+                         BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
+                    <Image Margin="10,0,0,0" Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" 
+                           HorizontalOptions="Start" >
+
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Tapped"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+
+                    </Image>
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="My Collection" 
+                                FontSize="Large" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0"/>
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent" Orientation="Vertical" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+
+                    <ListView  SeparatorColor="Black" SeparatorVisibility="Default" HeightRequest="{Binding Height}" SelectedItem="{Binding SelectedItem}"
+                              BackgroundColor="Transparent"    ItemsSource="{Binding MyCollectionList}" CachingStrategy="RecycleElement" HasUnevenRows="True">
+
+
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+
+                                    <StackLayout BackgroundColor="Transparent" Padding="5,0,5,0" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                        <StackLayout BackgroundColor="Transparent" Orientation="Horizontal" HorizontalOptions="Fill">
+                                            <StackLayout BackgroundColor="Transparent" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="Black" Text="{Binding Item}" LineBreakMode="TailTruncation"
+                                FontSize="20"  />
+                                            </StackLayout>
+
+                                            <StackLayout BackgroundColor="Transparent" Orientation="Vertical" Padding="0,5,0,5" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <StackLayout HorizontalOptions="EndAndExpand" Margin="0,10,0,0">
+                                                    <Image  WidthRequest="25"  HeightRequest="25"  Source="ic_next.png">
+                                                    </Image>
+                                                </StackLayout>
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+
+                                        <StackLayout Orientation="Horizontal" Margin="0,10,0,0" BackgroundColor="Transparent" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                                            <Label TextColor="{Binding DateColor}" FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTitles}" FontAttributes="Bold" FontSize="Medium" Text="Expires:"></Label>
+                                            <Label TextColor="{Binding DateColor}" FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTitles}" FontAttributes="Bold" FontSize="Medium" Text="{Binding Date}"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+
+
+                    </ListView>
+
+                    <StackLayout Orientation="Horizontal" IsVisible="{Binding VipVisible}" Spacing="5" BackgroundColor="Transparent" Margin="10,5,10,5" HorizontalOptions="FillAndExpand">
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" IsVisible="{Binding VipVisible}"
+                                TextColor="Black" Text="'1000' Points rewards" HorizontalOptions="Start"
+                                FontSize="20"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+
+                        <Image HorizontalOptions="StartAndExpand" HeightRequest="35" WidthRequest="35" VerticalOptions="Start"
+                   Source="ic_gift_red.png"  IsVisible="{Binding VipVisible}"/>
+
+                        <Image HorizontalOptions="EndAndExpand" HeightRequest="25" WidthRequest="25" VerticalOptions="Center"
+                   Source="ic_next.png"  IsVisible="{Binding VipVisible}"/>
+                    </StackLayout>
+
+                    <BoxView  IsVisible="{Binding VipVisible}" HorizontalOptions="FillAndExpand" Margin="0,10,0,0" HeightRequest="0.5" BackgroundColor="Black"/>
+
+                </StackLayout>
+
+            </Grid>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Akram.Views.ShowMessage">
+
+
+
+    <StackLayout BackgroundColor="#6AB889" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" Padding="0,10,0,10" Margin="20">
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Image  HeightRequest="25" WidthRequest="25" HorizontalOptions="StartAndExpand"/>
+
+            <Label Text="Error" FontSize="Medium" HorizontalTextAlignment="Center" 
+               HorizontalOptions="CenterAndExpand" TextColor="#f5f5f5"
+                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"/>
+
+            
+            <Image Source="cross.png" HeightRequest="25" WidthRequest="25" Margin="0,0,15,0" HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+      
+        <BoxView BackgroundColor="#f5f5f5" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+
+        <Label x:Name="msgTxt" FontSize="Small" HorizontalTextAlignment="Start" Margin="20"
+               HorizontalOptions="StartAndExpand" TextColor="#f5f5f5"
+                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"/>
+    </StackLayout>
+</pages:PopupPage>

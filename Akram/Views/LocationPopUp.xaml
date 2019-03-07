@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:adc="clr-namespace:Akram.Repository"
+                 xmlns:custom="clr-namespace:Akram.CustomControls"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Akram.Views.LocationPopUp"
+                 BackgroundColor="Transparent">
+
+    <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="45" VerticalOptions="CenterAndExpand" Padding="0" Spacing="0">
+        
+        <StackLayout BackgroundColor="#0E8D41" HorizontalOptions="FillAndExpand" Padding="0,10,0,10">
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Allow Akram to access your location" 
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+        </StackLayout>
+
+
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" BackgroundColor="#3DA269">
+                <custom:LineLabel LineSpacing="1.4" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Margin="10,5,10,0"
+                                TextColor="White" Text="Akram uses this to personlize your experience, Finding gifts needs permission to access your location" 
+                                FontSize="Medium"  HorizontalTextAlignment="Center"/>
+
+            <BoxView HorizontalOptions="FillAndExpand" Margin="0,10,0,0" HeightRequest="0.5" BackgroundColor="#91A89B"/>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Never" HorizontalOptions="Center"
+                                FontSize="Medium"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+            <BoxView HorizontalOptions="FillAndExpand" Margin="0,10,0,0" HeightRequest="0.5" BackgroundColor="#91A89B"/>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Always" HorizontalOptions="Center"
+                                FontSize="Medium"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+            <BoxView HorizontalOptions="FillAndExpand" Margin="0,10,0,0" HeightRequest="0.5" BackgroundColor="#91A89B"/>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Margin="0,0,0,10"
+                                TextColor="White" Text="While using the app" HorizontalOptions="Center"
+                                FontSize="Medium"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+            </StackLayout>
+
+
+    </StackLayout>
+
+</pages:PopupPage>

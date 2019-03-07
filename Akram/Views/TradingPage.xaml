@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Akram.Views.TradingPage"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             BackgroundImage="ic_icons_bg.png">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="30"
+                          Margin="0" Padding="0">
+
+            <Grid HorizontalOptions="FillAndExpand">
+                <Image HorizontalOptions="FillAndExpand" HeightRequest="70"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+                <StackLayout Spacing="0" x:Name="firstGrid" Padding="8"   Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                        <Image Margin="10,0,0,0" Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" 
+                               HorizontalOptions="Start" >
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Back_Tapped"></TapGestureRecognizer>
+                            </Image.GestureRecognizers>
+
+                        </Image>
+
+                        <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Margin="10,0,0,0"
+                                TextColor="White" Text="Trading" HorizontalOptions="Start"
+                                FontSize="Large"  HorizontalTextAlignment="Start" VerticalOptions="Center"/>
+                    </StackLayout>
+
+                </StackLayout>
+            </Grid>
+
+            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="20" VerticalOptions="FillAndExpand">
+
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Image  Source="ic_phone_transfer.png" Margin="0,30,0,0" HeightRequest="180" WidthRequest="180"></Image>
+                </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand" Padding="40,0,40,0">
+                    <Frame HasShadow="False" BackgroundColor="#379a5f" OutlineColor="#379a5f" Padding="10,10,10,20" CornerRadius="0">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Better Together" 
+                                FontSize="Large"  HorizontalTextAlignment="Center"/>
+
+                            <custom:LineLabel LineSpacing="1.4" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Trade your gifts family and friend to trade your items amongest yourself" 
+                                FontSize="Medium"  HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout HorizontalOptions="FillAndExpand" Margin="20,5,20,5">
+                    <Button  Command="{Binding StartBtnCommand}"
+                    FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                    Text="Start" Margin="0,30,0,0"
+                        TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="FillAndExpand"
+                        BorderRadius="8" FontSize="Medium"  />
+                </StackLayout>
+
+            </StackLayout>
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

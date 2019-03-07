@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             BackgroundColor="Transparent"
+                 x:Class="Akram.Views.GiftRatingPopUp">
+    
+    <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="80,45,80,45" VerticalOptions="CenterAndExpand" Padding="0" Spacing="0">
+
+    <Frame BackgroundColor="#FEFEFE" CornerRadius="10" Padding="5,15,5,15" OutlineColor="#C0645F">
+
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Spacing="5">
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" FontAttributes="Bold"
+           StyleId="{x:Static adc:App_FontFamilies.PageTitles}"
+                                TextColor="Black" Text="Rating" Margin="0,20,0,0"
+                                FontSize="25"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+                <BoxView HorizontalOptions="FillAndExpand" BackgroundColor="Black" HeightRequest="1" Margin="15,0,15,0"></BoxView>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="0" Margin="20,0,20,20">
+                    <Image HeightRequest="30" WidthRequest="30" Source="ic_star_outline.png"/>
+                    <Image HeightRequest="30" WidthRequest="30" Source="ic_star_outline.png"/>
+                    <Image HeightRequest="30" WidthRequest="30" Source="ic_star_outline.png"/>
+                    <Image HeightRequest="30" WidthRequest="30" Source="ic_star_outline.png"/>
+                    <Image HeightRequest="30" WidthRequest="30" Source="ic_star_outline.png"/>
+                </StackLayout>
+            
+        </StackLayout>
+
+    </Frame>
+
+    </StackLayout>
+</pages:PopupPage>

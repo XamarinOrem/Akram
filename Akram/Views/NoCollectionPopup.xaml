@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:adc="clr-namespace:Akram.Repository"
+                 xmlns:custom="clr-namespace:Akram.CustomControls"
+             x:Class="Akram.Views.NoCollectionPopup"
+                 BackgroundColor="Transparent">
+    <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="50" 
+                 VerticalOptions="CenterAndExpand" Padding="0" Spacing="0">
+        <StackLayout BackgroundColor="#0E8D41" HorizontalOptions="FillAndExpand" Padding="10">
+            <custom:LineLabel FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" LineSpacing="1.3"
+                                TextColor="White" Text="You can't collect this gift, you already have a gift from this mechant."
+                          HorizontalOptions="StartAndExpand"
+                                FontSize="Small"  HorizontalTextAlignment="Start" VerticalOptions="StartAndExpand"/>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

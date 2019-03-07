@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:custom="clr-namespace:Akram.CustomControls" 
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Akram.Views.NoInternetPopup">
+    <StackLayout BackgroundColor="Transparent" Padding="25">
+        <StackLayout BackgroundColor="White" HorizontalOptions="CenterAndExpand" Spacing="10" VerticalOptions="CenterAndExpand" Padding="15" Margin="0">
+            <Label Text="Connection failed" FontSize="25" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand"
+                   TextColor="#a3a1a0"
+                  FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" StyleId="{x:Static adc:App_FontFamilies.PageTitles}"/>
+
+            <custom:LineLabel Text="There was an error while trying to connect. Please check your internet and try again."
+                                FontSize="Medium" LineSpacing="1.5" HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" TextColor="#a3a1a0"
+FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"/>
+
+            <Button Text="OK" TextColor="#107E3E" BackgroundColor="Transparent" BorderRadius="0" FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" StyleId="{x:Static adc:App_FontFamilies.PageTitles}"
+                FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Button_Clicked"></Button>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

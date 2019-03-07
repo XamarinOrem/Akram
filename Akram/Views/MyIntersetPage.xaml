@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+                 xmlns:custom="clr-namespace:Akram.CustomControls"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Akram.Views.MyIntersetPage"
+                 BackgroundColor="Transparent">
+
+    <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Margin="50,60,50,60" VerticalOptions="CenterAndExpand" Spacing="0">
+
+        <StackLayout BackgroundColor="#0E8D41" HorizontalOptions="FillAndExpand" Padding="0,10,0,10">
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="INTRESTS" 
+                                FontSize="28"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+            </StackLayout>
+
+
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" RowSpacing="0" BackgroundColor="Transparent">
+            <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                   Source="menu_drawer_bg.png" Opacity="0.7" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+
+
+            <StackLayout Spacing="10"  BackgroundColor="Transparent" VerticalOptions="Center" IsVisible="{Binding LoadingVisible}" Orientation="Vertical">
+                <ActivityIndicator IsRunning="True" IsVisible="True" Color="White"></ActivityIndicator>
+
+            </StackLayout>
+
+
+            <ContentView IsVisible="{Binding NoInternetVisible}" x:Name="NoInternet" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <StackLayout BackgroundColor="Transparent" Padding="10" Spacing="10">
+                    <Image Source="nointernet.png" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="150" Margin="0,10,0,0"></Image>
+                    <Label Text="Connection failed" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start"  TextColor="White"
+                           FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" StyleId="{x:Static adc:App_FontFamilies.PageTitles}"></Label>
+                    <custom:LineLabel Text="There was an error while trying to connect. Please check your internet and try again." FontSize="Small" 
+                                      HorizontalOptions="StartAndExpand" LineSpacing="1.2" TextColor="White"
+                           VerticalOptions="Start" HorizontalTextAlignment="Center" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                      StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"></custom:LineLabel>
+                    <Button FontFamily="{x:Static adc:App_FontFamilies.PageTitles}" StyleId="{x:Static adc:App_FontFamilies.PageTitles}"
+                        Margin="0,10,0,0"
+                    HorizontalOptions="Center"  TextColor="Black" BackgroundColor="White"
+                    Text="Try Again" FontSize="Small" WidthRequest="180" HeightRequest="50"
+                        FontAttributes="Bold" BorderRadius="15" Clicked="Try_Again_Button_Clicked"></Button>
+                </StackLayout>
+            </ContentView>
+
+            <ContentView  x:Name="NoData" BackgroundColor="Transparent" IsVisible="{Binding NoDataVisible}">
+                <StackLayout BackgroundColor="Transparent" Padding="10" Spacing="10">
+                    <Image Source="no_data_found.png" VerticalOptions="Start" HorizontalOptions="Center" HeightRequest="250" Margin="0,30,0,0"></Image>
+                    <custom:LineLabel LineSpacing="1.2" Text="No data to view" FontSize="Medium" TextColor="White"
+                                      HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                           VerticalOptions="Center" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                      StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"></custom:LineLabel>
+                </StackLayout>
+            </ContentView>
+
+            <ListView  SeparatorVisibility="None" VerticalOptions="StartAndExpand" Grid.Row="0" Grid.Column="0"
+                       HasUnevenRows="True" BackgroundColor="Transparent" IsVisible="{Binding MainListVisible}"
+                                  ItemsSource="{Binding MyInterestList}" x:Name="interestList" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout x:Name="Item" Padding="15" BackgroundColor="Transparent" Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Transparent">
+
+                                    <Image  HeightRequest="30" WidthRequest="30" HorizontalOptions="Start"
+                                           VerticalOptions="Center"  Source="{Binding imgRadio}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer BindingContext="{Binding Source={x:Reference interestList}, Path=BindingContext}"
+                                                                  Command="{Binding radio_Tapped}"
+                                                                  CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding Item}" 
+                                FontSize="Medium"  VerticalOptions="Center"/>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+
+
+            </ListView>
+
+
+            <StackLayout VerticalOptions="EndAndExpand" Spacing="0" IsVisible="{Binding MainListVisible}"
+                         HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0" BackgroundColor="#0E8D41">
+            <BoxView HorizontalOptions="FillAndExpand" Margin="0" HeightRequest="1" BackgroundColor="#A7A9AA" VerticalOptions="EndAndExpand"/>
+
+            <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="0" Margin="0" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
+          FontSize="Medium" Text="Done" TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding doneCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                <BoxView HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" WidthRequest="1" BackgroundColor="#A7A9AA"/>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
+          FontSize="Medium" Text="Cancel" TextColor="White">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding cancelCommand}"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+
+                    </Label>
+            </StackLayout>
+            </StackLayout>
+        </Grid>
+
+        
+
+        </StackLayout>
+
+</pages:PopupPage>

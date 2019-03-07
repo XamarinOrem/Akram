@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Akram.Views.LoaderPopup">
+    <ScrollView>
+        <AbsoluteLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout x:Name="FrameContainer" BackgroundColor="Transparent"  Padding="0">
+
+                <StackLayout Spacing="10"  BackgroundColor="Transparent" x:Name="layoutMain" Orientation="Vertical">
+                    <ActivityIndicator IsRunning="True" IsVisible="True" Color="#107E3E"></ActivityIndicator>
+
+                </StackLayout>
+
+
+            </StackLayout>
+
+        </AbsoluteLayout>
+    </ScrollView>
+</pages:PopupPage>

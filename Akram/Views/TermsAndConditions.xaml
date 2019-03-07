@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             BackgroundImage="ic_icons_bg.png"
+             x:Class="Akram.Views.TermsAndConditions">
+
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0"
+                          Margin="0" Padding="0">
+                         
+        
+        <Grid x:Name="mainGrid" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalOptions="FillAndExpand" HeightRequest="50"
+                   Source="bg_with_header.png" Grid.Row="0" Grid.Column="0" Aspect="Fill"/>
+
+            <StackLayout Orientation="Horizontal" x:Name="firstGrid"
+                         BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Row="0" Grid.Column="0">
+                <Image Margin="10,0,0,0" Source="ic_back.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25"
+                       HorizontalOptions="Start" x:Name="backImg">
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Back_Tapped"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+
+                </Image>
+
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Terms &amp; Conditions" Margin="10,0,0,0"
+                                FontSize="Large" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+            </StackLayout>
+
+            <ScrollView Grid.Row="1" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout BackgroundColor="Transparent" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+
+                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="Center" Margin="5,15,0,0" HorizontalTextAlignment="Center" VerticalOptions="StartAndExpand"
+          FontSize="24" Text="Terms &amp; Conditions" TextColor="#383838"/>
+
+
+                    <StackLayout Padding="10" BackgroundColor="#97A19D">
+                     
+
+          <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,15,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions1"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+                        <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions2"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+       
+
+                                      <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions3"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+                                      <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions4"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+                                            <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions5"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+                     
+                                       <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions6"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+                                        <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions7"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+                                   <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,15" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions8"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+                                        <Label LineBreakMode="WordWrap" VerticalOptions="FillAndExpand"
+                                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" Margin="15,0,15,0" HorizontalTextAlignment="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span x:Name="termsConditions9"  TextColor="#383838"
+                          LineHeight="1.6" FontSize="Medium"/>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+                 
+                </StackLayout>
+                    </StackLayout>
+            </ScrollView>
+
+            <Button  Command="{Binding agreeCommand}" x:Name="agreeBtn" Grid.Row="2" Grid.Column="0"
+                    FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                    Text="Agree" Margin="15,30,15,20" VerticalOptions="EndAndExpand"
+                        TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="FillAndExpand"
+                        BorderRadius="8" FontSize="Medium"  />
+
+        </Grid>
+
+      
+    </StackLayout>
+</ContentPage>

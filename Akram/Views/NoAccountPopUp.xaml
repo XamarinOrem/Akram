@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+                 xmlns:custom="clr-namespace:Akram.CustomControls"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Akram.Views.NoAccountPopUp"
+                 BackgroundColor="Transparent">
+    
+    <StackLayout HorizontalOptions="FillAndExpand" Margin="45" VerticalOptions="CenterAndExpand" Spacing="0">
+
+        <StackLayout BackgroundColor="#0E8D41" HorizontalOptions="FillAndExpand" Padding="0,10,0,10">
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="Don't have an account?" 
+                                FontSize="Large"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+        </StackLayout>
+
+        <StackLayout BackgroundColor="#41A469" Padding="10">
+        <custom:LineLabel LineSpacing="1.3" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="To collect gifts please create an account or log in from the side menu." 
+                                FontSize="Medium"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+
+        <BoxView HorizontalOptions="FillAndExpand" Margin="0,10,0,0" HeightRequest="1" BackgroundColor="#A7A9AA"/>
+
+        <StackLayout Orientation="Horizontal" BackgroundColor="Transparent" Spacing="0" Margin="0" HorizontalOptions="FillAndExpand">
+
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
+          FontSize="Medium" Text="Login" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Login_Tapped"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+            </Label>
+
+            <BoxView HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" WidthRequest="1" BackgroundColor="#A7A9AA"/>
+
+            <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+           HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center"
+          FontSize="Medium" Text="Cancel" TextColor="White">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Cancel_Tapped"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+        </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

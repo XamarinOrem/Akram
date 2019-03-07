@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:custom="clr-namespace:Akram.CustomControls"
+             x:Class="Akram.Views.HomeMapPage">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="StartAndExpand" Spacing="0" Padding="0">
+
+            <StackLayout BackgroundColor="#10A24A" x:Name="firstLayout" Orientation="Horizontal" HorizontalOptions="FillAndExpand" HeightRequest="60"  Padding="0" Margin="0">
+
+                <Image Margin="10,0,0,0" Source="menu.png" VerticalOptions="CenterAndExpand"  HeightRequest="25" WidthRequest="25" HorizontalOptions="Start" >
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Menu_Tapped"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+
+                </Image>
+
+                <Label  FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Text="Akram"
+                        TextColor="#ffffff" FontSize="Large" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Margin="10,0,0,0">
+                </Label>
+
+                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                    <Image HorizontalOptions="EndAndExpand" x:Name="notificationImg" HeightRequest="40" WidthRequest="40"  Source="ic_notifications.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </StackLayout>
+
+            <ContentView x:Name="MainView">
+
+                <AbsoluteLayout>
+
+
+                    <custom:CustomMap AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            x:Name="MyMap" IsShowingUser="true"
+            MapType="Street" HasZoomEnabled="True">
+                    </custom:CustomMap>
+
+                    <Label  FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" x:Name="timeLabel"
+                        TextColor="#10A24A" FontSize="Medium" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand"
+                        Margin="0,20,10,0" LineBreakMode="WordWrap" HorizontalTextAlignment="End">
+                    </Label>
+
+                    <Label  FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" x:Name="advanceLbl"
+                        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Text="Advance Mode" IsVisible="False"
+                        TextColor="#D8BFD8" FontSize="Large" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand"
+                        Margin="0,40,10,0" LineBreakMode="WordWrap" HorizontalTextAlignment="End">
+                    </Label>
+
+                    <Label  FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                        AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" x:Name="extremeLbl"
+                        StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" Text="Extreme Mode" IsVisible="False"
+                        TextColor="#F38882" FontSize="Large" HorizontalOptions="EndAndExpand" VerticalOptions="StartAndExpand"
+                        Margin="0,40,10,0" LineBreakMode="WordWrap" HorizontalTextAlignment="End">
+                    </Label>
+                </AbsoluteLayout>
+            </ContentView>
+ 
+            <ContentView x:Name="NoLocationContentView" IsVisible="False">
+                <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" VerticalOptions="FillAndExpand" Spacing="5"
+                          Margin="0" Padding="0">
+                    <StackLayout BackgroundColor="#97A19D" Margin="20,30,20,0" Padding="10" VerticalOptions="Start"
+                     HorizontalOptions="FillAndExpand">
+
+                        <custom:LineLabel LineSpacing="1.9" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="#383838" Text="Please allow the app to access your location from your mobile settings akram > Location > . Or from the side menu Setting > Location "  HorizontalOptions="Center"
+                                FontSize="Large"  HorizontalTextAlignment="Center"/>
+
+                    </StackLayout>
+
+                    <Button Text="Open Settings" Clicked="Handle_Clicked"
+                                FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                   StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                Margin="20,30,20,0"
+                        TextColor="White" BackgroundColor="#0E3021" HorizontalOptions="FillAndExpand"
+                        BorderRadius="8" FontSize="Medium"/>
+
+                    <Image Source="ic_globe.png" HeightRequest="170" WidthRequest="170" VerticalOptions="Start" HorizontalOptions="Center" Margin="0,50,0,30"/>
+                </StackLayout>
+            </ContentView>
+            
+            
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

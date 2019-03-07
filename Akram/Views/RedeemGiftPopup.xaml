@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:adc="clr-namespace:Akram.Repository"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             BackgroundColor="Transparent"
+             x:Class="Akram.Views.RedeemGiftPopup">
+    <StackLayout BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" Margin="80,45,80,45" VerticalOptions="CenterAndExpand" Padding="0" Spacing="0">
+
+        <Frame BackgroundColor="#0E8D41" CornerRadius="10" Padding="5" OutlineColor="#C0645F">
+
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Spacing="5">
+
+                <Image Source="ic_tick_white.png" HeightRequest="80" WidthRequest="80" HorizontalOptions="Center"/>
+                <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" x:Name="textLbl" Margin="0,0,0,20"
+                                FontSize="25"  HorizontalTextAlignment="Center" VerticalOptions="Center"/>
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </StackLayout.GestureRecognizers>
+            </StackLayout>
+            
+        </Frame>
+        
+    </StackLayout>
+</pages:PopupPage>

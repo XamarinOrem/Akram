@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 BackgroundColor="Transparent"
+                 xmlns:adc="clr-namespace:Akram.Repository"
+             x:Class="Akram.Views.ShowLocationPopup">
+
+    <StackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" Margin="50,60,50,60" VerticalOptions="CenterAndExpand" Spacing="0">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="#0E8D41" Padding="0,10,0,10">
+            <Image  HeightRequest="25" WidthRequest="25" HorizontalOptions="StartAndExpand"/>
+
+            <Label Text="LOCATIONS" FontSize="Medium" HorizontalTextAlignment="Center" 
+               HorizontalOptions="CenterAndExpand" TextColor="White"
+                   FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"/>
+
+
+            <Image Source="cross.png" HeightRequest="25" WidthRequest="25" Margin="0,0,15,0" HorizontalOptions="EndAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+
+        <ListView  SeparatorVisibility="None" VerticalOptions="Start"
+                       HasUnevenRows="True" BackgroundColor="#6AB889" ItemTapped="locationList_ItemTapped"
+                                   x:Name="locationList" CachingStrategy="RecycleElement">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <StackLayout x:Name="Item" Padding="15" BackgroundColor="Transparent" Orientation="Vertical" 
+                                         HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Transparent">
+
+                                    <Label FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
+                                 StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
+                                TextColor="White" Text="{Binding Item}" 
+                                FontSize="Medium"  VerticalOptions="Center"/>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+
+
+            </ListView>
+
+
+    </StackLayout>
+
+</pages:PopupPage>
