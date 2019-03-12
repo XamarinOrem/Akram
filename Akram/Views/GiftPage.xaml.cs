@@ -52,7 +52,7 @@ namespace Akram.Views
                         _ruleLabel.Text = i + 1 + ". " + CommonLib.FirstCharToUpper(splitString[i]);
                         _ruleLabel.HorizontalOptions = LayoutOptions.Start;
                         _ruleLabel.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
-                        _ruleLabel.TextColor = Color.FromHex("##5A6E66");
+                        _ruleLabel.TextColor = Color.FromHex("#5A6E66");
                         _ruleLabel.HorizontalTextAlignment = TextAlignment.Start;
                         _ruleLabel.Margin = new Thickness(20, 0, 0, 0);
                         _ruleLabel.FontFamily = "MYRIADPROBOLD";
@@ -67,7 +67,7 @@ namespace Akram.Views
                     _ruleLabel.Text = "No Rules Found";
                     _ruleLabel.HorizontalOptions = LayoutOptions.Center;
                     _ruleLabel.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
-                    _ruleLabel.TextColor = Color.FromHex("##5A6E66");
+                    _ruleLabel.TextColor = Color.FromHex("#5A6E66");
                     _ruleLabel.HorizontalTextAlignment = TextAlignment.Center;
                     _ruleLabel.Margin = new Thickness(20, 0, 0, 0);
                     _ruleLabel.FontFamily = "MYRIADPROBOLD";
@@ -87,7 +87,7 @@ namespace Akram.Views
                         Height = 270,
                         Width = 270
                     },
-                    Aspect =Aspect.AspectFill
+                    Aspect = Aspect.AspectFill
                 };
                 barcode.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
                 barcode.BarcodeValue = "id(" + SelectedItem.SightingId + ")," + "name(" + SelectedItem.Item + ")," + "type,dis,loc,user_id(" + LoginUserDetails.UserId + "),2";
@@ -115,19 +115,19 @@ namespace Akram.Views
 
             }
 
-            //Device.StartTimer(TimeSpan.FromSeconds(2), () =>
-            //{
-            //    if (!IsScanned)
-            //    {
-            //        DependencyService.Get<IFirebaseDatabase>().CheckGiftForScan();
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false;
-            //    }
+            Device.StartTimer(TimeSpan.FromSeconds(2), () =>
+            {
+                if (!IsScanned)
+                {
+                    DependencyService.Get<IFirebaseDatabase>().CheckGiftForScan();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
 
-            //});
+            });
 
             MessagingCenter.Subscribe<SendPosition>(this, "ScanChanged", (sender) =>
             {
@@ -135,13 +135,26 @@ namespace Akram.Views
                 {
                     IsScanned = true;
 
-                    Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(new RedeemGiftPopup("Reedemed"));
+                    DependencyService.Get<IFirebaseDatabase>().DeleteCollection(SelectedItem.SightingId, ItemId, ItemId);
 
-                    Task.Delay(1000);
-
-                    Xamarin.Forms.Application.Current.MainPage.Navigation.PopAllPopupAsync();
+                    UpdateAfterRedeemed();
                 }
+                MessagingCenter.Unsubscribe<SendPosition>(this, "ScanChanged");
             });
+        }
+
+        /// <summary>
+        /// Show popup and close popup after redeemed.
+        /// </summary>
+        public async void UpdateAfterRedeemed()
+        {
+            await Application.Current.MainPage.Navigation.PushPopupAsync(new RedeemGiftPopup("Reedemed"));
+
+            await Task.Delay(1000);
+
+            await Application.Current.MainPage.Navigation.PopAllPopupAsync();
+
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
         public async void GetData(string itemId)
@@ -166,7 +179,7 @@ namespace Akram.Views
                         phoneImg.IsVisible = !string.IsNullOrEmpty(result.phone) ? true : false;
                         instaImg.IsVisible = !string.IsNullOrEmpty(result.insta_profile) ? true : false;
                         fbImg.IsVisible = !string.IsNullOrEmpty(result.facebook_profile) ? true : false;
-                        
+
                     }
                     else
                     {
@@ -203,13 +216,14 @@ namespace Akram.Views
         /// <param name="e"></param>
         private void Insta_Tapped(object sender, EventArgs e)
         {
-            try{
+            try
+            {
                 if (!string.IsNullOrEmpty(instaLink))
                 {
                     Device.OpenUri(new Uri(instaLink));
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 DisplayAlert("", "Link not valid", "Ok");
             }
@@ -222,11 +236,12 @@ namespace Akram.Views
         /// <param name="e"></param>
         private void Facebook_Tapped(object sender, EventArgs e)
         {
-            try{
-            if (!string.IsNullOrEmpty(facebookLink))
+            try
             {
-                Device.OpenUri(new Uri(facebookLink));
-            }
+                if (!string.IsNullOrEmpty(facebookLink))
+                {
+                    Device.OpenUri(new Uri(facebookLink));
+                }
             }
             catch (Exception)
             {
@@ -240,7 +255,8 @@ namespace Akram.Views
             {
                 return true;
             }
-            else{
+            else
+            {
                 return false;
             }
         }
@@ -269,7 +285,7 @@ namespace Akram.Views
             });
         }
 
-        void OnDisappearing(object sender,EventArgs e)
+        void OnDisappearing(object sender, EventArgs e)
         {
             IsPopOpened = false;
         }

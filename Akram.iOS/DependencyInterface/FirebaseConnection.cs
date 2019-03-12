@@ -57,48 +57,47 @@ namespace Akram.iOS.DependencyInterface
 
         public void CheckGiftForScan()
         {
-            mDatabase = Firebase.Database.Database.DefaultInstance.GetReferenceFromPath("https://akramtheone-restore.firebaseio.com/Akram");
+            string getScanningResult = string.Empty;
 
-            //mDatabase.ObserveSingleEvent(DataEventType.Value, (snapshot) =>
-            //{
-            //    var getUserCollection = snapshot.GetChildSnapshot(LoginUserDetails.UserId);
-            //    if (getUserCollection.GetValue() != null)
-            //    {
-            //        var getChild = getUserCollection.GetChildSnapshot("Collection")?.GetValue();
-            //        if (getChild != null)
-            //        {
-            //            var getCollectionValues = getChild.Values.GetEnumerator();
-            //            while (getCollectionValues.MoveNext())
-            //            {
-            //                var item = getCollectionValues.Current;
-            //                var itemValues = item.Values;
-            //                String[] collectionValueArray = new String[itemValues.Count];
-            //                itemValues.CopyTo(collectionValueArray, 0);
-            //                var itemKeys = item.Keys;
-            //                String[] collectionKeysArray = new String[itemKeys.Count];
-            //                itemKeys.CopyTo(collectionKeysArray, 0);
-            //                SaveCollectionData _collectionData = new SaveCollectionData();
-            //                for (int l = 0; l < collectionKeysArray.Count(); l++)
-            //                {
-            //                    if (collectionKeysArray[l] == "item_id")
-            //                    {
-            //                        if (GiftPage.ItemId == collectionValueArray[l])
-            //                        {
-            //                            var getScanItem = collectionKeysArray.Where(a => a.ToLower() == "scan").FirstOrDefault();
-            //                            var getIndex = collectionKeysArray.IndexOf(getScanItem);
-            //                            getScanningResult = collectionValueArray[getIndex];
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
+            var database = Firebase.Database.Database.DefaultInstance;
+            mDatabase = database.GetReferenceFromUrl("https://akramtheone-restore.firebaseio.com/Akram");
 
-            //    if (getScanningResult == "1")
-            //    {
-            //        MessagingCenter.Send(new SendPosition { pokeman_id = getScanningResult }, "ScanChanged");
-            //    }
-            //}));
+            mDatabase.ObserveSingleEvent(DataEventType.Value, (snapshot) =>
+            {
+                var getUserCollection = snapshot.GetChildSnapshot(LoginUserDetails.UserId);
+                if (getUserCollection.HasChild("Collection"))
+                {
+                    var getChild = (NSDictionary)getUserCollection.GetChildSnapshot("Collection")?.GetValue();
+                    if (getChild != null)
+                    {
+                        var getCollectionValues = getChild.Values.GetEnumerator();
+                        while (getCollectionValues.MoveNext())
+                        {
+                            var item = (NSDictionary)getCollectionValues.Current;
+                            var collectionValueArray = item.Values;
+                            var collectionKeysArray = item.Keys;
+                            SaveCollectionData _collectionData = new SaveCollectionData();
+                            for (int l = 0; l < collectionKeysArray.Count(); l++)
+                            {
+                                if (collectionKeysArray[l].ToString() == "item_id")
+                                {
+                                    if (GiftPage.ItemId == collectionValueArray[l].ToString())
+                                    {
+                                        var getScanItem = collectionKeysArray.Where(a => a.ToString().ToLower() == "scan").FirstOrDefault();
+                                        var getIndex = collectionKeysArray.IndexOf(getScanItem);
+                                        getScanningResult = collectionValueArray[getIndex].ToString();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (getScanningResult == "1")
+                {
+                    MessagingCenter.Send(new SendPosition { pokeman_id = getScanningResult }, "ScanChanged");
+                }
+            });
         }
 
         public void CheckGiftTaken()
@@ -488,7 +487,7 @@ namespace Akram.iOS.DependencyInterface
                 mDatabase.ObserveSingleEvent(DataEventType.Value, (snapshot) =>
                 {
                     var getUserCollection = snapshot.GetChildSnapshot(LoginUserDetails.UserId);
-                    if (getUserCollection.HasChildren)
+                    if (getUserCollection.HasChild("Collection"))
                     {
                         var getChild = (NSDictionary)getUserCollection.GetChildSnapshot("Collection")?.GetValue();
                         if (getChild != null)

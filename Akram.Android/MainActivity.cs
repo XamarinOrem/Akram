@@ -14,6 +14,7 @@ using Xamarin.Forms;
 using Android.Content;
 using Plugin.FirebasePushNotification;
 using Android;
+using HockeyApp.Android;
 
 namespace Akram.Droid
 {
@@ -29,7 +30,7 @@ namespace Akram.Droid
         [assembly: UsesFeature("android.hardware.location.network", Required = false)]
 
         const string permissionWL = Manifest.Permission.WakeLock;
-        readonly string[] permissions ={Manifest.Permission.WakeLock};
+        readonly string[] permissions = { Manifest.Permission.WakeLock };
         const int RequestLocationId = 0;
 
         protected override void OnCreate(Bundle bundle)
@@ -88,6 +89,14 @@ namespace Akram.Droid
             {
 
             }
+        }
+
+        string HOCKEYAPP_APPID = "6b91f8e5a7224eaebde3cd5a7748f454";
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+            CrashManager.Register(this, HOCKEYAPP_APPID);
         }
 
 

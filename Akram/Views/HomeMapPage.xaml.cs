@@ -21,7 +21,7 @@ namespace Akram.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomeMapPage : ContentPage
     {
-        public static double radius;
+        public static double _Radius;
         public static Plugin.Geolocator.Abstractions.Position position = null;
         public string minTime = "0";
         public string secTime = "0";
@@ -35,6 +35,8 @@ namespace Akram.Views
         public static bool IsStarted = false;
         public static string pokemanId = string.Empty;
         public static bool IsRefresh = false;
+        public static bool checkGpsEnabled;
+        public static PermissionStatus status;
         int i = 0;
         public static List<string> AllItemIds = new List<string>();
 
@@ -90,52 +92,55 @@ namespace Akram.Views
             NavigationPage.SetHasNavigationBar(this, false);
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-             {
-                 var checkGpsEnabled = DependencyService.Get<ILocSettings>().CheckGpsEnable();
-                 Task.Factory.StartNew(async () =>
-                 {
-                     var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-                     if (!checkGpsEnabled || status != PermissionStatus.Granted)
-                     {
-                         Device.BeginInvokeOnMainThread(() =>
-                         {
-                             if (position != null)
-                             {
-                                if (!IsPopUpDisplayed)
+            {
+                checkGpsEnabled = DependencyService.Get<ILocSettings>().CheckGpsEnable();
+                Task.Run(async () =>
+                {
+                    status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        if (!checkGpsEnabled || status != PermissionStatus.Granted)
+                        {
+                            if (position != null)
+                            {
+                                if (!IsPopUpDisplayed&&status==PermissionStatus.Granted)
                                 {
                                     i = 0;
-                                    DisplayAlert("Location Error", "GPS is currently turn off. Please enable it under your mobile Settings > Location", "OK");
                                     IsPopUpDisplayed = true;
+                                    DisplayAlert("Location Error", "GPS is currently turn off. Please enable it under your mobile Settings > Location", "OK");
                                 }
                                 i = i + 1;
                                 if (i >= 15)
                                 {
-                                NoLocationContentView.IsVisible = true;
-                                 MainView.IsVisible = false;
+                                    locationErrorText.Text =!checkGpsEnabled&&status==PermissionStatus.Granted? "Please allow the app to access your location from your mobile settings akram > Location > . Or from the side menu Setting > Location ":checkGpsEnabled&&status!=PermissionStatus.Granted? "You need to give Akram app access to your location to start finding gifts" : "Please allow the app to access your location from your mobile settings akram > Location > . Or from the side menu Setting > Location ";
+                                    NoLocationContentView.IsVisible = true;
+                                    MainView.IsVisible = false;
                                 }
                             }
-                             else
-                             {
-                                 NoLocationContentView.IsVisible = true;
-                                 MainView.IsVisible = false;
-                             }
-                         });
-                     }
-                     else
-                     {
-                         IsPopUpDisplayed = false;
-                         if (position == null && !IsStarted)
-                         {
-                             IsStarted = true;
-                             OnStart();
-                         }
+                            else
+                            {
+                                locationErrorText.Text = !checkGpsEnabled && status == PermissionStatus.Granted ? "Please allow the app to access your location from your mobile settings akram > Location > . Or from the side menu Setting > Location " : checkGpsEnabled && status != PermissionStatus.Granted ? "You need to give Akram app access to your location to start finding gifts" : "Please allow the app to access your location from your mobile settings akram > Location > . Or from the side menu Setting > Location ";
 
-                         NoLocationContentView.IsVisible = false;
-                         MainView.IsVisible = true;
-                     }
+                                NoLocationContentView.IsVisible = true;
+                                MainView.IsVisible = false;
+                            }
+                        }
+                        else
+                        {
+                            IsPopUpDisplayed = false;
+                            if (position == null && !IsStarted)
+                            {
+                                IsStarted = true;
+                                OnStart();
+                            }
+
+                            NoLocationContentView.IsVisible = false;
+                            MainView.IsVisible = true;
+                        }
+                    });
                 });
                 return true;
-             });
+            });
 
             MessagingCenter.Subscribe<Application, bool>(this, "NoCollectionPopup", (sender, message) =>
             {
@@ -205,7 +210,18 @@ namespace Akram.Views
 
         void Handle_Clicked(object sender, System.EventArgs e)
         {
-            DependencyService.Get<ILocSettings>().OpenSettings();
+            if (!checkGpsEnabled && status == PermissionStatus.Granted)
+            {
+                DependencyService.Get<ILocSettings>().OpenSettings();
+            }
+            else if(checkGpsEnabled&&status!=PermissionStatus.Granted)
+            {
+                DependencyService.Get<IStoragePermissions>().GetLocationPermissions();
+            }
+            else if(!checkGpsEnabled&&status!=PermissionStatus.Granted)
+            {
+                DependencyService.Get<ILocSettings>().OpenSettings();
+            }
         }
 
         protected override void OnDisappearing()
@@ -455,7 +471,7 @@ namespace Akram.Views
 
 
                         there: var calculateDistance = CalculateDistance(lat, lon, Convert.ToDouble(item.lat), Convert.ToDouble(item.lon));
-                            if (calculateDistance <= radius)
+                            if (calculateDistance <= _Radius)
                             {
                                 if (Device.RuntimePlatform == Device.iOS)
                                 {
@@ -522,7 +538,7 @@ namespace Akram.Views
                 result = await cbase.GetHomePageGifts(url);
 
                 if (result != null)
-                {
+               {
                     if (result.sightings != null)
                     {
                         string ColorOfGift = string.Empty;
@@ -549,9 +565,9 @@ namespace Akram.Views
                             {
                                 ColorOfGift = "Green";
                             }
-                            radius = 20;
+                            _Radius = 20;
                         there: var calculateDistance = CalculateDistance(lat, lon, Convert.ToDouble(item.lat), Convert.ToDouble(item.lon));
-                            if (calculateDistance <= radius)
+                            if (calculateDistance <= _Radius)
                             {
                                 if (Device.RuntimePlatform == Device.iOS)
                                 {
@@ -595,22 +611,22 @@ namespace Akram.Views
                 cts.CancelAfter(time);
 
                 Device.StartTimer(TimeSpan.FromSeconds(1), () =>
-               {
-                   timerTime();
-                   if (cts.IsCancellationRequested)
-                   {
-                       radius = 30;
-                       MessagingCenter.Send(Application.Current, "RadiusUpdate", true);
-                       advanceLbl.IsVisible = true;
-                       SetTimerAgain();
-                       return false;
-                   }
-                   else
-                   {
-                       timeLabel.Text = minTime + " min, " + secTime + " sec " + "To advance mode";
-                       return true;
-                   }
-               });
+                {
+                    timerTime();
+                    if (cts.IsCancellationRequested)
+                    {
+                        _Radius = 30;
+                        MessagingCenter.Send(Application.Current, "RadiusUpdate", true);
+                        advanceLbl.IsVisible = true;
+                        SetTimerAgain();
+                        return false;
+                    }
+                    else
+                    {
+                        timeLabel.Text = minTime + " min, " + secTime + " sec " + "To advance mode";
+                        return true;
+                    }
+                });
 
             }
             catch (Exception ex)
@@ -633,7 +649,7 @@ namespace Akram.Views
                 timerTime();
                 if (cts.IsCancellationRequested)
                 {
-                    radius = 40;
+                    _Radius = 40;
                     MessagingCenter.Send(Application.Current, "RadiusUpdateAgain", true);
                     advanceLbl.IsVisible = false;
                     extremeLbl.IsVisible = true;

@@ -34,6 +34,8 @@ namespace Akram.Repository
 
         public const string DeleteGiftUrl = wsBaseUrl + "delete_one_sighting.php";
 
+        public const string CollectGiftUrl = wsBaseUrl + "collect_gift.php";
+
         #endregion
 
         #region Interests

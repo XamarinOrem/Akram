@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Foundation;
+using HockeyApp.iOS;
 using Plugin.FirebasePushNotification;
 using Syncfusion.SfRating.XForms.iOS;
 using UIKit;
@@ -41,6 +42,11 @@ namespace Akram.iOS
             UIApplication.SharedApplication.IdleTimerDisabled = true;
 
             LoadApplication(new App());
+
+            var manager = BITHockeyManager.SharedHockeyManager;
+            manager.Configure("$3a4b3a42bb634752b875a8d03374192b");
+            manager.DisableMetricsManager = true;
+            manager.StartManager();
 
             return base.FinishedLaunching(app, options);
         }

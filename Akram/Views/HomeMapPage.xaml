@@ -70,13 +70,13 @@
                      HorizontalOptions="FillAndExpand">
 
                         <custom:LineLabel LineSpacing="1.9" FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
-           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
-                                TextColor="#383838" Text="Please allow the app to access your location from your mobile settings akram > Location > . Or from the side menu Setting > Location "  HorizontalOptions="Center"
+           StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}" x:Name="locationErrorText"
+                                TextColor="#383838"  HorizontalOptions="Center"
                                 FontSize="Large"  HorizontalTextAlignment="Center"/>
 
                     </StackLayout>
 
-                    <Button Text="Open Settings" Clicked="Handle_Clicked"
+                    <Button Text="Open Settings" Clicked="Handle_Clicked" x:Name="openSettingsBtn"
                                 FontFamily="{x:Static adc:App_FontFamilies.PageTextRegular}" 
                    StyleId="{x:Static adc:App_FontFamilies.PageTextRegular}"
                                 Margin="20,30,20,0"

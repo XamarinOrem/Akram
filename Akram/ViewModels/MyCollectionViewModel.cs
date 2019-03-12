@@ -118,7 +118,7 @@ namespace Akram.ViewModels
                         DateTime value;
                         if (!string.IsNullOrEmpty(getData[i].Date))
                         {
-                            
+
                             if (DateTime.TryParse(getData[i].Date, out value))
                             {
                                 DateTime? expiryDate = DateTime.Parse(getData[i].Date.Trim());
@@ -131,16 +131,16 @@ namespace Akram.ViewModels
                         }
 
                         string Date = !string.IsNullOrEmpty(getData[i].Date) ? getData[i].Date.Trim() : string.Empty;
-                        obj.Add(new MyCollectionModel
-                        {
-                            ItemId = getData[i].ItemId,
-                            Date = Date,
-                            Scan=getData[i].Scan,
-                            Rules = getData[i].Rules,
-                            Item = getData[i].ShopName,
-                            SightingId = getData[i].SightingId,
-                            DateColor = !string.IsNullOrEmpty(Date) ?DateTime.TryParse(getData[i].Date, out value)? Convert.ToDateTime(Date) == DateTime.Now ? Color.Red : Color.FromHex("#379a5f") : Color.FromHex("#379a5f"):Color.FromHex("#379a5f"),
-                        });
+
+                        MyCollectionModel myModel = new MyCollectionModel();
+                        myModel.ItemId = getData[i].ItemId;
+                        myModel.Date = Date;
+                        myModel.Scan = getData[i].Scan;
+                        myModel.Rules = getData[i].Rules;
+                        myModel.Item = getData[i].ShopName;
+                        myModel.SightingId = getData[i].SightingId;
+                        myModel.DateColor = !string.IsNullOrEmpty(Date) ? DateTime.TryParse(getData[i].Date, out value) ? Convert.ToDateTime(Date).Date == DateTime.Now.Date ? Color.Red : Color.FromHex("#379a5f") : Color.FromHex("#379a5f") : Color.FromHex("#379a5f");
+                        obj.Add(myModel);
                     }
                 }
                 catch (Exception ex)

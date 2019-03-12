@@ -40,6 +40,21 @@ namespace Akram.Views
 
             sightingId = id;
 
+            //Device.StartTimer(TimeSpan.FromSeconds(30), () =>
+            //{
+            //    LoaderPopup.CloseAllPopup();
+            //    if (!isStopTimer)
+            //    {
+            //        DependencyService.Get<IFirebaseDatabase>().CheckGiftTaken();
+            //        return true;
+            //    }
+            //    else
+            //    {
+
+            //        return false;
+            //    }
+            //});
+
             DependencyService.Get<IFirebaseDatabase>().GiftDetailsCheckTaken();
 
             MessagingCenter.Subscribe<Application, bool>(this, "GiftsTakenDetails", (sender, message) =>
@@ -61,53 +76,52 @@ namespace Akram.Views
                         }
                         else
                         {
-                            Device.StartTimer(TimeSpan.FromSeconds(30), () =>
-                            {
-                                LoaderPopup.CloseAllPopup();
-                                if (!isStopTimer)
-                                {
-                                    DependencyService.Get<IFirebaseDatabase>().CheckGiftTaken();
-                                    return true;
-                                }
-                                else
-                                {
+                            LoaderPopup.CloseAllPopup();
+                            //Device.StartTimer(TimeSpan.FromSeconds(30), () =>
+                            //{
+                            //    LoaderPopup.CloseAllPopup();
+                            //    if (!isStopTimer)
+                            //    {
+                            //        DependencyService.Get<IFirebaseDatabase>().CheckGiftTaken();
+                            //        return true;
+                            //    }
+                            //    else
+                            //    {
 
-                                    return false;
-                                }
-                            });
+                            //        return false;
+                            //    }
+                            //});
                         }
                     }
                 }
                 else
                 {
                     LoaderPopup.CloseAllPopup();
-                    collectBtn.IsVisible = true;                    
+                    collectBtn.IsVisible = true;
                 }
             });
 
-            
-
-            MessagingCenter.Subscribe<Application, bool>(this, "CheckTakenGifts", (sender, message) =>
-             {
-                 string getIdArray = string.Join(",", listItemsTaken);
-                 string[] splitAllStrings = getIdArray.Split(',');
-                 if (splitAllStrings.Count() > 0)
-                 {
-                     var getSightingIdMatch = splitAllStrings.Where(A => A == sightingId).FirstOrDefault();
-                     collectBtn.IsVisible = !string.IsNullOrEmpty(getSightingIdMatch) ? false : true;
-                     if (!collectBtn.IsVisible)
-                     {
-                         DisplayAlert("", "The item is already taken", "OK");
-                         isStopTimer = true;
-                         Navigation.PopAsync();
-                     }
-                 }
-                 else
-                 {
-                     collectBtn.IsVisible = true;
-                 }
-                 MessagingCenter.Unsubscribe<Application>(this, "CheckTakenGifts");
-             });
+            //MessagingCenter.Subscribe<Application, bool>(this, "CheckTakenGifts", (sender, message) =>
+            // {
+            //     string getIdArray = string.Join(",", listItemsTaken);
+            //     string[] splitAllStrings = getIdArray.Split(',');
+            //     if (splitAllStrings.Count() > 0)
+            //     {
+            //         var getSightingIdMatch = splitAllStrings.Where(A => A == sightingId).FirstOrDefault();
+            //         collectBtn.IsVisible = !string.IsNullOrEmpty(getSightingIdMatch) ? false : true;
+            //         if (!collectBtn.IsVisible)
+            //         {
+            //             DisplayAlert("", "The item is already taken", "OK");
+            //             isStopTimer = true;
+            //             Navigation.PopAsync();
+            //         }
+            //     }
+            //     else
+            //     {
+            //         collectBtn.IsVisible = true;
+            //     }
+            //     MessagingCenter.Unsubscribe<Application>(this, "CheckTakenGifts");
+            // });
 
 
             if (Device.RuntimePlatform == Device.iOS)
@@ -124,13 +138,30 @@ namespace Akram.Views
                         shopNameLbl.Text = item.name;
                         pokemonId = item.pokemon_id;
 
-                        for (int i = 0; i < item.rules.Count; i++)
+                        if (item.rules.Count > 0)
+                        {
+                            for (int i = 0; i < item.rules.Count; i++)
+                            {
+                                Label _ruleLabel = new Label();
+                                _ruleLabel.Text = i + 1 + ". " + item.rules[i];
+                                _ruleLabel.HorizontalOptions = LayoutOptions.Start;
+                                _ruleLabel.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
+                                _ruleLabel.TextColor = Color.FromHex("#5A6E66");
+                                _ruleLabel.HorizontalTextAlignment = TextAlignment.Start;
+                                _ruleLabel.Margin = new Thickness(20, 0, 0, 0);
+                                _ruleLabel.FontFamily = "MYRIADPROBOLD";
+                                _ruleLabel.StyleId = "MYRIADPROBOLD";
+
+                                rulesLayout.Children.Add(_ruleLabel);
+                            }
+                        }
+                        else
                         {
                             Label _ruleLabel = new Label();
-                            _ruleLabel.Text = i + 1 + ". " + item.rules[i];
+                            _ruleLabel.Text = "No Rules Found";
                             _ruleLabel.HorizontalOptions = LayoutOptions.Start;
                             _ruleLabel.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
-                            _ruleLabel.TextColor = Color.FromHex("##5A6E66");
+                            _ruleLabel.TextColor = Color.FromHex("#5A6E66");
                             _ruleLabel.HorizontalTextAlignment = TextAlignment.Start;
                             _ruleLabel.Margin = new Thickness(20, 0, 0, 0);
                             _ruleLabel.FontFamily = "MYRIADPROBOLD";
@@ -149,7 +180,7 @@ namespace Akram.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(new LoaderPopup());
+            await Application.Current.MainPage.Navigation.PushPopupAsync(new LoaderPopup());
             MessagingCenter.Unsubscribe<SendPosition>(this, "GiftPage");
         }
 
@@ -165,7 +196,7 @@ namespace Akram.Views
             Navigation.PopAsync();
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        public async Task addData()
         {
             try
             {
@@ -197,18 +228,21 @@ namespace Akram.Views
 
                 LoaderPopup.CloseAllPopup();
 
-                await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(new RedeemGiftPopup("Collected"));
+                await Application.Current.MainPage.Navigation.PushPopupAsync(new RedeemGiftPopup("Collected"));
 
                 await Task.Delay(1000);
 
-                await Xamarin.Forms.Application.Current.MainPage.Navigation.PopAllPopupAsync();
-
-                await DeleteGift();
+                await Application.Current.MainPage.Navigation.PopAllPopupAsync();
             }
             catch (Exception)
             {
                 LoaderPopup.CloseAllPopup();
             }
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await CollectGift();
         }
 
         private void rating_ValueChanged(object sender, Syncfusion.SfRating.XForms.ValueEventArgs e)
@@ -226,8 +260,7 @@ namespace Akram.Views
                 await RateGift();
         }
 
-
-        public async Task DeleteGift()
+        public async Task CollectGift()
         {
             try
             {
@@ -237,17 +270,21 @@ namespace Akram.Views
                 nvc.Add(new KeyValuePair<string, string>("user_id", LoginUserDetails.UserId));
                 nvc.Add(new KeyValuePair<string, string>("api_key", CommonLib.apiKey));
                 nvc.Add(new KeyValuePair<string, string>("login_hash", LoginUserDetails.LoginHash));
-                //nvc.Add(new KeyValuePair<string, string>("lon", collectModel.Loc));
                 nvc.Add(new KeyValuePair<string, string>("is_deleted", "1"));
 
-                var result = await cbase.ForgotPassword(ApiUrl.DeleteGiftUrl, nvc);
+                var result = await cbase.ForgotPassword(ApiUrl.CollectGiftUrl, nvc);
 
-                if (result.status.status_code == "-1")
+                if (result.status.status_code == "1")
                 {
-                    LoaderPopup.CloseAllPopup();
-                    HomeMapPage.IsRefresh = true;
-                    await Xamarin.Forms.Application.Current.MainPage.Navigation.PopAsync();
+                    await addData();
                 }
+                else if (result.status.status_code == "6")
+                {
+                    await DisplayAlert("", "We are sorry you have missed this gift, someone took it before you!", "Ok");
+                }
+                LoaderPopup.CloseAllPopup();
+                HomeMapPage.IsRefresh = true;
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             catch (Exception)
             {
