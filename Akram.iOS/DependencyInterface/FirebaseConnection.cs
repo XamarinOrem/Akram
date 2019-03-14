@@ -76,7 +76,6 @@ namespace Akram.iOS.DependencyInterface
                             var item = (NSDictionary)getCollectionValues.Current;
                             var collectionValueArray = item.Values;
                             var collectionKeysArray = item.Keys;
-                            SaveCollectionData _collectionData = new SaveCollectionData();
                             for (int l = 0; l < collectionKeysArray.Count(); l++)
                             {
                                 if (collectionKeysArray[l].ToString() == "item_id")
@@ -242,6 +241,12 @@ namespace Akram.iOS.DependencyInterface
                             var getChild = (NSDictionary)getUserCollection.GetChildSnapshot("Collection")?.GetValue();
                             if (getChild != null)
                             {
+                                string getKey = string.Empty;
+                                foreach (var item in getChild.Keys)
+                                {
+                                    getKey = item.ToString();
+                                }
+
                                 var getCollectionValues = getChild.Values.GetEnumerator();
                                 while (getCollectionValues.MoveNext())
                                 {
@@ -274,6 +279,18 @@ namespace Akram.iOS.DependencyInterface
                                         if (itemKeys[l].ToString() == "scan")
                                         {
                                             _collectionData.Scan = itemValues[l].ToString();
+                                        }
+                                        if (itemKeys[l].ToString() == "Distance")
+                                        {
+                                            _collectionData.Distance = itemValues[l].ToString();
+                                        }
+                                        if (itemKeys[l].ToString() == "Loc")
+                                        {
+                                            _collectionData.Location = itemValues[l].ToString();
+                                        }
+                                        if (itemKeys[l].ToString() == "Type")
+                                        {
+                                            _collectionData.Type = itemValues[l].ToString();
                                         }
                                     }
                                     App.Database.SaveCollection(_collectionData);
@@ -462,6 +479,16 @@ namespace Akram.iOS.DependencyInterface
                                         if (getIndex != -1)
                                         {
                                             TradingViewModel.collectModel.item_id = collectionValueArray[getIndex].ToString();
+                                        }
+                                    }
+
+                                    var getSightingID = collectionKeysArray.Where(a => a.ToString().ToLower() == "Sighting_id").FirstOrDefault();
+                                    if (getSightingID != null)
+                                    {
+                                        var getIndex = collectionKeysArray.IndexOf(getSightingID);
+                                        if (getIndex != -1)
+                                        {
+                                            TradingViewModel.collectModel.Sighting_id = collectionValueArray[getIndex].ToString();
                                         }
                                     }
                                 }

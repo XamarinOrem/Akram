@@ -132,6 +132,16 @@ namespace Akram.Droid
                                                 TradingViewModel.collectModel.item_id = collectionValueArray[getIndex];
                                             }
                                         }
+
+                                        var getSightingID = collectionKeysArray.Where(a => a.ToLower() == "Sighting_id").FirstOrDefault();
+                                        if (getSightingID != null)
+                                        {
+                                            var getIndex = collectionKeysArray.IndexOf(getSightingID);
+                                            if (getIndex != -1)
+                                            {
+                                                TradingViewModel.collectModel.Sighting_id = collectionValueArray[getIndex];
+                                            }
+                                        }
                                     }
                                 }
                             }

@@ -89,8 +89,8 @@ namespace Akram.Views
                     },
                     Aspect = Aspect.AspectFill
                 };
-                barcode.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
-                barcode.BarcodeValue = "id(" + SelectedItem.SightingId + ")," + "name(" + SelectedItem.Item + ")," + "type,dis,loc,user_id(" + LoginUserDetails.UserId + "),2";
+                barcode.BarcodeFormat = BarcodeFormat.QR_CODE;
+                barcode.BarcodeValue = SelectedItem.Key + "," + SelectedItem.Item + "," + SelectedItem.Type + "," + SelectedItem.Distance + "," + SelectedItem.Location + "," + LoginUserDetails.UserId + ",2";
                 mainLayout.Children.Insert(0, barcode);
 
                 if (Convert.ToInt32(SelectedItem.ItemId) > 0)
@@ -135,7 +135,7 @@ namespace Akram.Views
                 {
                     IsScanned = true;
 
-                    DependencyService.Get<IFirebaseDatabase>().DeleteCollection(SelectedItem.SightingId, ItemId, ItemId);
+                    DependencyService.Get<IFirebaseDatabase>().DeleteCollection(SelectedItem.Key, ItemId, ItemId);
 
                     UpdateAfterRedeemed();
                 }

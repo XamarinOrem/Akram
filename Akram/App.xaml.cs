@@ -51,7 +51,6 @@ namespace Akram
                 LoginUserDetails.Email = getLoginUser.Email;
                 LoginUserDetails.FullName = getLoginUser.FullName;
                 LoginUserDetails.FacebookProfilePicture = getLoginUser.FacebookProfilePicture;
-                //MainPage = new NavigationPage(new ViewProfilePage());
                 MainPage = new NavigationPage(new HomeMasterPage());
             }
             else

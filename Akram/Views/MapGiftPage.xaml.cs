@@ -159,10 +159,10 @@ namespace Akram.Views
                         {
                             Label _ruleLabel = new Label();
                             _ruleLabel.Text = "No Rules Found";
-                            _ruleLabel.HorizontalOptions = LayoutOptions.Start;
+                            _ruleLabel.HorizontalOptions = LayoutOptions.Center;
                             _ruleLabel.FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label));
                             _ruleLabel.TextColor = Color.FromHex("#5A6E66");
-                            _ruleLabel.HorizontalTextAlignment = TextAlignment.Start;
+                            _ruleLabel.HorizontalTextAlignment = TextAlignment.Center;
                             _ruleLabel.Margin = new Thickness(20, 0, 0, 0);
                             _ruleLabel.FontFamily = "MYRIADPROBOLD";
                             _ruleLabel.StyleId = "MYRIADPROBOLD";

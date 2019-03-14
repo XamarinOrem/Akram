@@ -18,6 +18,10 @@ namespace Akram.Models
         public string SightingId { get; set; }
         public Color DateColor { get; set; }
         public string ItemId { get; set; }
+        public string Type { get; set; }
+        public string Distance { get; set; }
+        public string Location { get; set; }
+        public string Key { get; set; }
         private string _imgRadio;
 
         public string imgRadio
@@ -55,5 +59,13 @@ namespace Akram.Models
         public string Rules { get; set; }
 
         public string Scan { get; set; }
+
+        public string Type { get; set; }
+
+        public string Distance { get; set; }
+
+        public string Location { get; set; }
+
+        public string Key { get; set; }
     }
 }

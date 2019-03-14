@@ -50,7 +50,6 @@ namespace Akram.Droid
                                 var itemKeys = item.Keys;
                                 String[] collectionKeysArray = new String[itemKeys.Count];
                                 itemKeys.CopyTo(collectionKeysArray, 0);
-                                SaveCollectionData _collectionData = new SaveCollectionData();
                                 for (int l = 0; l < collectionKeysArray.Count(); l++)
                                 {
                                     if (collectionKeysArray[l] == "item_id")

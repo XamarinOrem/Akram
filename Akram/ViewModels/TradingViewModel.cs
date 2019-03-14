@@ -75,7 +75,7 @@ namespace Akram.ViewModels
             {
                 DependencyService.Get<IFirebaseDatabase>().Collect(collectModel);
 
-                DependencyService.Get<IFirebaseDatabase>().DeleteCollection(collectModel.Sighting_id, ItemId, ItemId);
+                DependencyService.Get<IFirebaseDatabase>().DeleteCollection(collectModel.Key, ItemId, ItemId);
 
                 Application.Current.MainPage.DisplayAlert("","Gift Traded Successfully","OK");
 
@@ -97,11 +97,10 @@ namespace Akram.ViewModels
                 var getResult = _Result.Text.Split(',');
                 if (getResult != null)
                 {
-                    collectModel.Sighting_id = Regex.Match(getResult[0], @"\d+").Value;
+                    //collectModel.Sighting_id = Regex.Match(getResult[0], @"\d+").Value;
                     //collectModel.item_id = Regex.Match(getResult[5], @"\d+").Value;
-                    ItemId = Regex.Match(getResult[5], @"\d+").Value;
-                    var getLength = getResult[1].Length - 6;
-                    collectModel.Name = getResult[1].Substring(5, getLength);
+                    ItemId = getResult[6];
+                    collectModel.Name = getResult[1];
                     collectModel.userId = LoginUserDetails.UserId;
                 }
 

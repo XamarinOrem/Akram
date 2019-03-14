@@ -16,5 +16,6 @@ namespace Akram.Models
         public string Sighting_id { get; set; }
         public string Type { get; set; }
         public string rules { get; set; }
+        public string Key { get; set; }
     }
 }

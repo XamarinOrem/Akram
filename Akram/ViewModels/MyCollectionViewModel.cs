@@ -116,20 +116,6 @@ namespace Akram.ViewModels
                     for (int i = 0; i < getData.Count; i++)
                     {
                         DateTime value;
-                        if (!string.IsNullOrEmpty(getData[i].Date))
-                        {
-
-                            if (DateTime.TryParse(getData[i].Date, out value))
-                            {
-                                DateTime? expiryDate = DateTime.Parse(getData[i].Date.Trim());
-                                var compareDate = DateTime.Now;
-                                if (compareDate.Date > expiryDate.Value.Date)
-                                {
-                                    DependencyService.Get<IFirebaseDatabase>().DeleteCollection(getData[i].SightingId.Trim(), getData[i].ItemId.Trim(), LoginUserDetails.UserId);
-                                }
-                            }
-                        }
-
                         string Date = !string.IsNullOrEmpty(getData[i].Date) ? getData[i].Date.Trim() : string.Empty;
 
                         MyCollectionModel myModel = new MyCollectionModel();
@@ -139,6 +125,10 @@ namespace Akram.ViewModels
                         myModel.Rules = getData[i].Rules;
                         myModel.Item = getData[i].ShopName;
                         myModel.SightingId = getData[i].SightingId;
+                        myModel.Type = getData[i].Type;
+                        myModel.Location = getData[i].Location;
+                        myModel.Distance = getData[i].Distance;
+                        myModel.Key = getData[i].Key;
                         myModel.DateColor = !string.IsNullOrEmpty(Date) ? DateTime.TryParse(getData[i].Date, out value) ? Convert.ToDateTime(Date).Date == DateTime.Now.Date ? Color.Red : Color.FromHex("#379a5f") : Color.FromHex("#379a5f") : Color.FromHex("#379a5f");
                         obj.Add(myModel);
                     }
@@ -183,30 +173,20 @@ namespace Akram.ViewModels
 
                     for (int i = 0; i < getData.Count; i++)
                     {
-                        if (!string.IsNullOrEmpty(getData[i].Date))
-                        {
-                            if (DateTime.TryParse(getData[i].Date, out value))
-                            {
-                                DateTime? expiryDate = DateTime.Parse(getData[i].Date.Trim());
-                                var compareDate = DateTime.Now;
-                                if (compareDate.Date > expiryDate.Value.Date)
-                                {
-                                    DependencyService.Get<IFirebaseDatabase>().DeleteCollection(getData[i].SightingId.Trim(), getData[i].ItemId.Trim(), LoginUserDetails.UserId);
-                                }
-                            }
-                        }
-
                         string Date = !string.IsNullOrEmpty(getData[i].Date) ? getData[i].Date.Trim() : string.Empty;
-                        obj.Add(new MyCollectionModel
-                        {
-                            ItemId = getData[i].ItemId,
-                            Date = Date,
-                            Scan = getData[i].Scan,
-                            Rules = getData[i].Rules,
-                            Item = getData[i].ShopName,
-                            SightingId = getData[i].SightingId,
-                            DateColor = !string.IsNullOrEmpty(Date) ? DateTime.TryParse(getData[i].Date, out value) ? Convert.ToDateTime(Date) == DateTime.Now ? Color.Red : Color.FromHex("#379a5f") : Color.FromHex("#379a5f") : Color.FromHex("#379a5f"),
-                        });
+                        MyCollectionModel myModel = new MyCollectionModel();
+                        myModel.ItemId = getData[i].ItemId;
+                        myModel.Date = Date;
+                        myModel.Scan = getData[i].Scan;
+                        myModel.Rules = getData[i].Rules;
+                        myModel.Item = getData[i].ShopName;
+                        myModel.SightingId = getData[i].SightingId;
+                        myModel.Type = getData[i].Type;
+                        myModel.Location = getData[i].Location;
+                        myModel.Distance = getData[i].Distance;
+                        myModel.Key = getData[i].Key;
+                        myModel.DateColor = !string.IsNullOrEmpty(Date) ? DateTime.TryParse(getData[i].Date, out value) ? Convert.ToDateTime(Date).Date == DateTime.Now.Date ? Color.Red : Color.FromHex("#379a5f") : Color.FromHex("#379a5f") : Color.FromHex("#379a5f");
+                        obj.Add(myModel);
                     }
                 }
                 catch (Exception ex)
